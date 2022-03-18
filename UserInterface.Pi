@@ -1,0 +1,71 @@
+import smbus
+import time
+import board
+import busio
+import adafruit_character_lcd.character_lcd_rgb_i2c as character_lcd
+
+columns = 16
+rows = 2
+#for RPI version 1, use “bus = smbus.SMBus(0)”
+bus = smbus.SMBus(1)
+
+# Modify this if you have a different sized Character LCD
+
+# Initialise I2C bus.
+i2c = busio.I2C(board.SCL,board.SDA)
+
+lcd = character_lcd.Character_LCD_RGB_I2C(i2c, columns, rows)
+
+lcd.clear()
+
+#this is the address we setup in the Arduino Program
+address = 0x04
+
+
+humidity = []
+N = []
+P = []
+K = []
+humidity_thresh = 60
+def temp():
+    temp_thresh = 72
+    prev_temp = [11]
+    temp = []
+
+    #inp = input("Enter a string: ")
+    #inp = inp.lower()
+    number = []
+    #for char in inp:
+    #    number.append(int ( ord(char)))                
+    
+    #if len(number) == 0:
+    #    print('list is empty')
+    #    continue
+
+    try:
+        bus.write_i2c_block_data(address,0,number)
+    except IOError:
+        lcd.color = [100,0,0]
+        lcd.text_direction = lcd.LEFT_TO_RIGHT
+        lcd.message = "I2C Error "
+        break
+    print ("RPI: ", number, " was sent to the arduino.")
+    
+    #sleep one second
+    time.sleep(1)
+
+
+    number = bus.read_i2c_block_data(address,0,len(number))
+    #print(number)
+    levels = []
+    #while i < len(totalvars):      
+    #    for x in number:
+    #        levels.append(x)
+    #levels = ''.join(levels)
+
+    for x in levels:
+        if chr(levels) == 
+    for x in levels:
+        while chr(levels) != ?:
+            temp.append(levels)
+        
